@@ -1,7 +1,7 @@
 # get_confidence_interval_from_treePL
-A project to get confidence interval from phylogenetic trees with treePL
+> Developed by *Nelson Buainain & Maura Regina*
 
-Phylogenetic trees estimate the evolutionary relationships among individuals. treePL is a software developed to estimate divergence times in a phylogenetic tree, and is especially useful with large datasets such as genomic data or large trees. However, divergence times is given as a point value and does not accomodate uncertainty.
+A project to get confidence interval from phylogenetic trees with treePL. Phylogenetic trees estimate the evolutionary relationships among individuals. treePL is a software developed to estimate divergence times in a phylogenetic tree, and is especially useful with large datasets such as genomic data or large trees. However, divergence times is given as a point value and does not accomodate uncertainty.
 
 ## GOAL
 
