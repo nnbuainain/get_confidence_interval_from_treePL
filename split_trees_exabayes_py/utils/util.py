@@ -3,8 +3,7 @@ import constant
 def read_file():
     print('\nReading file...')
 
-    lines = []
     with open(constant.FILE) as f:
-        lines = f.readlines()
+        content = f.read()
 
-    return lines
+    return content

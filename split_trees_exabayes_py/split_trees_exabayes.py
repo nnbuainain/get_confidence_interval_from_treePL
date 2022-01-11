@@ -1,14 +1,18 @@
 import utils.util as util
 
-def filter_legend(lines):
-    count = 0
-    for line in lines[5:100]:
-        count += 1
-        print(f'line {count}: {line}')
+def get_legend(content: str) -> dict:
+    legend_str = content.split('translate')[1].split(';')[0]
+    legend_str = legend_str.replace('\n', '').lstrip()
+    legend_dict = dict(x.split("	") for x in legend_str.split(",	"))
+
+    return legend_dict
 
 def main():
-    lines = util.read_file()
-    legend_dict = filter_legend(lines)
+    content = util.read_file()
+    legend_dict = get_legend(content)
+
+    for k, v in legend_dict.items():
+        print(k, v)
 
 if __name__ == "__main__":
     main()

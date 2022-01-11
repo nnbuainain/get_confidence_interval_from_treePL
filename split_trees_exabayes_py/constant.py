@@ -1,1 +1,1 @@
-FILE = '/home/indtusuario/Documents/pessoal/get_confidence_interval_from_treePL/exabayes_phylo_trees/exabayes_trees_run_1'
+FILE = '../exabayes_phylo_trees/exabayes_trees_run_1'
