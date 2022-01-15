@@ -27,17 +27,35 @@ def main():
     for index, tree in enumerate(tree_list, start=1):
         print(f'{index}{tree}')
 
-    for tree in tree_list:
-        tree_splited = tree.split(':')[:-1]
+    # Get keys and values for each tree
+    tree_split_list = []
+    trees_are_equal = True
+    all_cod_legend_previous = ''
+    for index, tree in enumerate(tree_list, start=1): # tree_list['tree1...', 'tree2', ... 'tree100']
+        tree_split = tree.split(':')[:-1] # tree_split['tree gen.2000000.{0} = [&U] (47', '5.764047943831943e-04,(78', ...]
+        all_cod_legend_current = ''
+        for partition in tree_split: # partition = 'tree gen.2000000.{0} = [&U] (47'
+            if partition[-2:].isdigit():
+                cod_legend = partition[-2:]
+                all_cod_legend_current += cod_legend
+                # print(f'{cod_legend} - {legend_dict[cod_legend]}')
+            elif partition[-1:].isdigit():
+                cod_legend = partition[-1:]
+                all_cod_legend_current += cod_legend
+                # print(f'{cod_legend} - {legend_dict[cod_legend]}')
+        print(f'{tree_split[0]} - {all_cod_legend_current}')
 
-    for tree in tree_splited:
-        if tree[-2:].isdigit():
-            cod_legend = tree[-2:]
-            print(f'{cod_legend} - {legend_dict[cod_legend]}')
-        elif tree[-1:].isdigit():
-            cod_legend = tree[-1:]
-            print(f'{cod_legend} - {legend_dict[cod_legend]}')
+        if index > 1:
+            if all_cod_legend_previous != all_cod_legend_current:
+                trees_are_equal = False
+                break
 
+        all_cod_legend_previous = all_cod_legend_current
+
+    if not trees_are_equal:
+        print(f' TREE # {index} is different')
+    else:
+        print('all trees are equal')
 
 if __name__ == "__main__":
     main()
