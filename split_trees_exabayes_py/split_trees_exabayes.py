@@ -27,5 +27,17 @@ def main():
     for index, tree in enumerate(tree_list, start=1):
         print(f'{index}{tree}')
 
+    for tree in tree_list:
+        tree_splited = tree.split(':')[:-1]
+
+    for tree in tree_splited:
+        if tree[-2:].isdigit():
+            cod_legend = tree[-2:]
+            print(f'{cod_legend} - {legend_dict[cod_legend]}')
+        elif tree[-1:].isdigit():
+            cod_legend = tree[-1:]
+            print(f'{cod_legend} - {legend_dict[cod_legend]}')
+
+
 if __name__ == "__main__":
     main()
