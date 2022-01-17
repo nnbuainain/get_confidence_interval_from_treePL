@@ -3,7 +3,8 @@ import utils.util as util
 def get_legend(content: str) -> dict:
     legend_str = content.split('translate')[1].split(';')[0]
     legend_str = legend_str.replace('\n', '').lstrip()
-    legend_dict = dict(x.split("	") for x in legend_str.split(",	"))
+    legend_dict = dict(x.split("\t") for x in legend_str.split(",	"))
+    print(legend_dict)
     return legend_dict
 
 def get_tree(content: str) -> list:
