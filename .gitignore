@@ -3,4 +3,4 @@ __pycache__/
 .idea/
 *.o
 venv/
-
+[~][$]*
