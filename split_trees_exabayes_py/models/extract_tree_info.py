@@ -8,6 +8,10 @@ def get_header(content: str) -> str:
     header = ''.join(header)
     return header
 
+def get_footer() -> str:
+    footer = 'end;'
+    return footer
+
 def get_legend(content: str) -> dict:
     legend_str = content.split('translate')[1].split(';')[0]
     legend_str = legend_str.replace('\n', '').lstrip()
@@ -20,9 +24,18 @@ def get_tree(content: str) -> list:
     tree_list = tree_str.split(';')[-2::-1]
     return tree_list
 
-def get_most_frequent_trees(content: str) -> list:
+def interleave_tree(*args: list) -> list:
+    interleaved_list = []
+    len_list = len(args[0])
+
+    for index in range(len_list):
+        for tree_list in args:
+            interleaved_list.append(tree_list[-index])
+
+    return interleaved_list
+
+def get_most_frequent_trees(tree_list: list) -> list:
     topology_list = []
-    tree_list = get_tree(content)
 
     for index, tree in enumerate(tree_list, start=1): # tree_list['tree1...', 'tree2', ... 'tree100']
         tree_split = tree.split(':')[:-1] # tree_split['tree gen.2000000.{0} = [&U] (47', '5.764047943831943e-04,(78', ...]
