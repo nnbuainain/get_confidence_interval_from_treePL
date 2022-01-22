@@ -9,7 +9,7 @@ taxa_dict = taxa_dict.set_index('nome_original')['nome_final'].to_dict()
 
 # Iter over files applying the rename function with the dictionary with original and final names
 for index, file in enumerate(glob.iglob('../exabayes_phylo_trees/original/exabayes*')):
-    with open(file, 'r') as f1:
+    with open(file, 'r') as f1,index:
         content_1 = f1.read()
         for original, final in taxa_dict.items():
             content_1 = content_1.replace(original, final)
