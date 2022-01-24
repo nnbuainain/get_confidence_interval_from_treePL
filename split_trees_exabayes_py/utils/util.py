@@ -4,9 +4,9 @@ def read_file(file) -> str:
 
     return content
 
-def write_file(header, footer: str, content: list):
+def write_file(header, footer: str, most_freq_trees: list):
     with open('../prun_trees_R/original_trees/most_freq_trees.nexus', 'w') as output_tree:
         output_tree.write(header)
-        for line in content:
+        for line in most_freq_trees:
             output_tree.write(line + '\n')
         output_tree.write('end;')

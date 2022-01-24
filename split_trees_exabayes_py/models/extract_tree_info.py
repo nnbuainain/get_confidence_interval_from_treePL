@@ -30,7 +30,8 @@ def interleave_tree(*args: list) -> list:
 
     for index in range(len_list):
         for tree_list in args:
-            interleaved_list.append(tree_list[-index])
+            interleaved_list.append(tree_list[index])
+            interleaved_list.reverse()
 
     return interleaved_list
 
@@ -54,14 +55,16 @@ def get_most_frequent_trees(tree_list: list) -> list:
                 topology += cod_legend
 
         topology_list.append(topology)
-
-    most_freq_tree = Counter(topology_list[100:-1]).most_common(1)[0][0]
+    topology_list.reverse()
+    most_freq_tree = Counter(topology_list[:400]).most_common(1)[0][0]
 
     # Get trees with the most frequent topologies
     most_freq_trees = [tree_list[i] + ';' for i, t in enumerate(topology_list) if t == most_freq_tree]
-
+    # for i, t in enumerate(topology_list):
+    #     if t == most_freq_tree:
+    #         most_freq_trees = tree_list[i]
     # Get either the last 100 trees or the maximum as possible
     if len(most_freq_trees) > 100:
-        return most_freq_trees[:100]
+        return most_freq_trees[-100:]
     else:
         return most_freq_trees
