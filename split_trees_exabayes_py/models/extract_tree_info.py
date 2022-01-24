@@ -1,4 +1,5 @@
 from collections import Counter
+from random import sample
 import glob
 
 def get_header(content: str) -> str:
@@ -31,14 +32,14 @@ def interleave_tree(*args: list) -> list:
     for index in range(len_list):
         for tree_list in args:
             interleaved_list.append(tree_list[index])
-            interleaved_list.reverse()
+    interleaved_list.reverse()
 
     return interleaved_list
 
-def get_most_frequent_trees(tree_list: list) -> list:
+def get_topologies(tree_list: list) -> list:
     topology_list = []
 
-    for index, tree in enumerate(tree_list, start=1): # tree_list['tree1...', 'tree2', ... 'tree100']
+    for index, tree in enumerate(tree_list): # tree_list['tree1...', 'tree2', ... 'tree100']
         tree_split = tree.split(':')[:-1] # tree_split['tree gen.2000000.{0} = [&U] (47', '5.764047943831943e-04,(78', ...]
         topology = ''
         for partition in tree_split: # partition = 'tree gen.2000000.{0} = [&U] (47'
@@ -55,16 +56,41 @@ def get_most_frequent_trees(tree_list: list) -> list:
                 topology += cod_legend
 
         topology_list.append(topology)
-    topology_list.reverse()
-    most_freq_tree = Counter(topology_list[:400]).most_common(1)[0][0]
+    return topology_list
 
-    # Get trees with the most frequent topologies
-    most_freq_trees = [tree_list[i] + ';' for i, t in enumerate(topology_list) if t == most_freq_tree]
-    # for i, t in enumerate(topology_list):
-    #     if t == most_freq_tree:
-    #         most_freq_trees = tree_list[i]
-    # Get either the last 100 trees or the maximum as possible
+def get_last_100_trees(topology_list, tree_list: list) -> list:
+    # Reverse topology list and tree list to place "best" tree on top
+    topology_list.reverse()
+    tree_list.reverse()
+
+    # Get most frequent topology in the last 100 samples
+    most_freq_topology = Counter(topology_list[:100]).most_common(1)[0][0]
+
+    # Get trees with the most frequent topology
+    most_freq_trees = [tree_list[i] for i, t in enumerate(topology_list) if t == most_freq_topology]
+
+    # Select the last 100 samples with the most frequent topology
     if len(most_freq_trees) > 100:
-        return most_freq_trees[-100:]
+        return most_freq_trees[:100]
+    else:
+        return most_freq_trees
+
+def get_100_random_trees(topology_list, tree_list: list) -> list:
+    # Reverse topology list and tree list to place "best" tree on top
+    topology_list.reverse()
+    tree_list.reverse()
+
+    # Discard first 25% of tree which usually didn't reach stationarity of parameters
+    topology_list = topology_list[:round(len(topology_list)*0.75)]
+
+    # Get most frequent topology in the last 100 samples
+    most_freq_topology = Counter(topology_list).most_common(1)[0][0]
+
+    # Get trees with the most frequent topology
+    most_freq_trees = [tree_list[i] for i, t in enumerate(topology_list) if t == most_freq_topology]
+
+    # Select the last 100 samples with the most frequent topology
+    if len(most_freq_trees) > 100:
+        return sample(most_freq_trees, k=100)
     else:
         return most_freq_trees

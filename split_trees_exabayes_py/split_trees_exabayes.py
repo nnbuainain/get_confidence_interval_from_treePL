@@ -15,7 +15,10 @@ def main():
 
     all_trees_list = eti.interleave_tree(tree1_list, tree2_list, tree3_list, tree4_list)
 
-    most_freq_trees = eti.get_most_frequent_trees(all_trees_list)
+    topologies = eti.get_topologies(all_trees_list)
+
+    # most_freq_trees = eti.get_last_100_trees(topologies, all_trees_list)
+    most_freq_trees = eti.get_100_random_trees(topologies, all_trees_list)
 
     header = eti.get_header(content_file1)
     footer = eti.get_footer()
