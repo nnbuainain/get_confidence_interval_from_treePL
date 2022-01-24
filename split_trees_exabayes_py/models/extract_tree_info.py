@@ -1,9 +1,9 @@
-import constant
 from collections import Counter
 import glob
 
 def get_header(content: str) -> str:
     header = content.split('tree gen.0.{0}')[0].split(';')[:-1]
+    header[0] = header[0] + ';'
     header.append(';\n')
     header = ''.join(header)
     return header
@@ -55,10 +55,10 @@ def get_most_frequent_trees(tree_list: list) -> list:
 
         topology_list.append(topology)
 
-    most_frequent_tree = Counter(topology_list).most_common(1)[0][0]
+    most_freq_tree = Counter(topology_list[100:-1]).most_common(1)[0][0]
 
     # Get trees with the most frequent topologies
-    most_freq_trees = [tree_list[i] for i, t in enumerate(topology_list) if t == most_frequent_tree]
+    most_freq_trees = [tree_list[i] + ';' for i, t in enumerate(topology_list) if t == most_freq_tree]
 
     # Get either the last 100 trees or the maximum as possible
     if len(most_freq_trees) > 100:
