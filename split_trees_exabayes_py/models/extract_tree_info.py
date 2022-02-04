@@ -25,12 +25,12 @@ def get_tree(content: str) -> list:
     tree_list = tree_str.split(';')[-2::-1]
     return tree_list
 
-def interleave_tree(*args: list) -> list:
+def interleave_tree(trees_list: list) -> list:
     interleaved_list = []
-    len_list = len(args[0])
+    len_list = len(trees_list[0])
 
     for index in range(len_list):
-        for tree_list in args:
+        for tree_list in trees_list:
             interleaved_list.append(tree_list[index])
     interleaved_list.reverse()
 
