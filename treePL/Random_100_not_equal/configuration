@@ -1,0 +1,18 @@
+treefile = ../prun_trees_R/pruned/100_not_equal_most_freq_trees.tre
+smooth = 100
+numsites = 1679555
+mrca = ARREMON Andes_BT_800_Arr_aur_ery ICN_35091_Arr_aur_occ ANSP_189205_Arr_aur_aur USNM_607183_Arr_aur_ruf LSU_33341_Arr_abe_nig LSU_66949_Arr_abe_abe Andes_JEA01_Arr_sch_can IAvH_9621_Arr_sch_sch Andes_O_432_Arr_tac_axi INPA_A19250_Arr_tac LGEMA_1307_Arr_sem MNT_394_Arr_fra ICN_39050_Arr_aur_spe USNM_645466_Arr_dor MFV_3908_Arr_fla MNT_4249_Arr_pol FMNH_394031_Arr_bru_bru FMNH_393763_Arr_bru_ape FMNH_393758_Arr_bru_kue_sut FMNH_346807_Arr_bru_sut AMNH_DOT8471_Arr_vir_vir MVZ_188247_Arr_bru_mac FMNH_481660_Arr_bru_all LSU_1371_Arr_bru_fro LSU_26437_Arr_cra_cra FMNH_430070_Arr_cas_cas_se ICN_37368_Arr_cra_eur AMNH_393016_Arr_cos FMNH_430060_Arr_ass_pol ICN_38550_Arr_ass_ass AMNH_DOT2507_Arr_tor_tor CU_55859_Arr_tor_bor AMNH_520402_Arr_phy ICN_36474_Arr_bas ICN_37349_Arr_ass_lar ICN_38244_Arr_per ICN_35798_Arr_atr_atr
+min = ARREMON 7.5
+max = ARREMON 8.4
+outfile = intree.dated.tre
+thorough
+# prime
+cv
+randomcv
+nthreads = 2
+opt = 1
+moredetail
+optad = 2
+moredetailad
+optcvad = 2
+moredetailcvad

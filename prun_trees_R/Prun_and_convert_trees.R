@@ -17,9 +17,9 @@ dir.create("./pruned")
 ###### 1
 
 # List all files
-files = list.files("../prun_trees_R/original_trees/single_trees","tree")
+files = list.files("../prun_trees_R/original_trees/","tree")
 
-# Loop over files
+# If your trees are in different files you can loop over files
 for (f in 1:length(files)){
   
   # Read tree in nexus format
@@ -92,10 +92,11 @@ for (f in 1:length(files)){
 write.tree(tree, file = paste0("./pruned/",files[f]))
 
 
+# If your trees are in the same file you can loop over trees
 ###### 2 Loop over trees in the same file
 
 # Nexus format
-tree <- read.nexus("./original_trees/multi_trees/all_trees.tre")
+tree <- read.nexus("./original_trees/most_freq_trees.nexus")
 
 # Or in tree format
 #tree <- read.tree("./tree_1.tre")
@@ -135,8 +136,9 @@ for (i in 1:length(tree)){
 }
 
 # If you want to select a n number of trees, here i'm select the last 100
-tree = tree[3902:4001]
+# tree = tree[3902:4001]
 
 # Write final tree
-write.tree(tree, file = "./pruned/all_trees.tre")
+write.tree(tree, file = "./pruned/100_most_freq_trees.tre")
+
 
